@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lezhi.crawler.mapper.FangjiaMapDataMapper" >
+  <resultMap id="BaseResultMap" type="com.lezhi.crawler.dto.FangjiaMapData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="residence_id" property="residenceId" jdbcType="BIGINT" />
+    <result column="block_id" property="blockId" jdbcType="VARCHAR" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="block_number" property="blockNumber" jdbcType="VARCHAR" />
+    <result column="floor_total" property="floorTotal" jdbcType="VARCHAR" />
+    <result column="boom_total" property="boomTotal" jdbcType="VARCHAR" />
+    <result column="block_sort" property="blockSort" jdbcType="VARCHAR" />
+    <result column="block_address" property="blockAddress" jdbcType="VARCHAR" />
+    <result column="x" property="x" jdbcType="DECIMAL" />
+    <result column="y" property="y" jdbcType="DECIMAL" />
+    <result column="avg_x" property="avgX" jdbcType="DECIMAL" />
+    <result column="avg_y" property="avgY" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="x8" property="x8" jdbcType="DECIMAL" />
+    <result column="y8" property="y8" jdbcType="DECIMAL" />
+    <result column="price_format" property="priceFormat" jdbcType="DECIMAL" />
+  </resultMap>
+
+</mapper>

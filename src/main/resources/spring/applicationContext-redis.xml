@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster" destroy-method="close">
+        <constructor-arg name="nodes">
+            <set>
+                <ref bean="hostAndPort1"/>
+                <ref bean="hostAndPort2"/>
+                <ref bean="hostAndPort3"/>
+                <ref bean="hostAndPort4"/>
+            </set>
+        </constructor-arg>
+    </bean>
+    <bean name="hostAndPort1" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg name="host" value="${redis.node1.ip1}"/>
+        <constructor-arg name="port" value="${redis.node1.port}"/>
+    </bean>
+    <bean name="hostAndPort2" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg name="host" value="${redis.node1.ip2}"/>
+        <constructor-arg name="port" value="${redis.node1.port}"/>
+    </bean>
+    <bean name="hostAndPort3" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg name="host" value="${redis.node1.ip3}"/>
+        <constructor-arg name="port" value="${redis.node1.port}"/>
+    </bean>
+    <bean name="hostAndPort4" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg name="host" value="${redis.node1.ip4}"/>
+        <constructor-arg name="port" value="${redis.node1.port}"/>
+    </bean>
+</beans>

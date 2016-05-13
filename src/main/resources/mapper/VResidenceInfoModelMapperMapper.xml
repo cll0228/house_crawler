@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lezhi.crawler.mapper.VResidenceInfoModelMapper">
+    <resultMap id="BaseResultMap" type="com.lezhi.crawler.dto.VResidenceInfoModel" autoMapping="true">
+        <id column="ResidenceID" property="residenceId" jdbcType="INTEGER"/>
+        <result column="RingID" property="ringId" jdbcType="SMALLINT"/>
+        <result column="BlockID" property="blockId" jdbcType="SMALLINT"/>
+        <result column="DistrictID" property="districtId" jdbcType="INTEGER"/>
+        <result column="nResidenceRing" property="nResidenceRing" jdbcType="VARCHAR"/>
+        <result column="nResidenceDistrict" property="nResidenceDistrict" jdbcType="VARCHAR"/>
+        <result column="nResidenceBlock" property="nResidenceBlock" jdbcType="VARCHAR"/>
+        <result column="ResidenceName" property="residenceName" jdbcType="VARCHAR"/>
+        <result column="ResidenceAddr" property="residenceAddr" jdbcType="VARCHAR"/>
+        <result column="ResidenceTypeID" property="residenceType" jdbcType="VARCHAR"/>
+        <result column="ResidenceTypeID" property="residenceTypeId" jdbcType="SMALLINT"/>
+        <result column="ResidenceBuildingArea" property="residenceBuildingArea" jdbcType="DECIMAL"/>
+        <result column="aResidenceBuildingArea" property="aResidenceBuildingArea" jdbcType="DECIMAL"/>
+        <result column="ResidenceVP" property="aResidenceVp" jdbcType="REAL"/>
+        <result column="ResidenceGP" property="aResidenceGp" jdbcType="REAL"/>
+        <result column="ResidenceAccomplishDatetime" property="aResidenceAccomplishDatetime" jdbcType="TIMESTAMP"/>
+        <result column="IsAvailable" property="isavailable" jdbcType="BIT"/>
+        <result column="BaiduLon" property="residenceLon" jdbcType="DECIMAL"/>
+        <result column="BaiduLat" property="residenceLat" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <select id="getResidenceByResidName" resultMap="BaseResultMap">
+        SELECT * FROM sh_residence_info WHERE ResidenceName like '%${residenceName}%';
+  </select>
+    <select id="selectResidenceIdByNameLike" resultMap="BaseResultMap">
+        SELECT * FROM `sh_residence_info` WHERE ResidenceName LIKE '%${residenceName}%' or ResidenceAddr LIKE '%${residenceAddr}%'; ;
+  </select>
+
+
+
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lezhi.crawler.mapper.HouseQuotationMapper">
+    <resultMap id="BaseResultMap" type="com.lezhi.crawler.dto.HouseQuotation">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <id column="QuotationID" property="quotationid" jdbcType="BIGINT"/>
+        <id column="QuotationDate" property="quotationdate" jdbcType="DATE"/>
+        <result column="ResidenceID" property="residenceid" jdbcType="INTEGER"/>
+        <result column="RingID" property="ringid" jdbcType="TINYINT"/>
+        <result column="DistrictID" property="districtid" jdbcType="INTEGER"/>
+        <result column="BlockID" property="blockid" jdbcType="SMALLINT"/>
+        <result column="PropertyTypeID" property="propertytypeid" jdbcType="TINYINT"/>
+        <result column="FloorStructureID" property="floorstructureid" jdbcType="TINYINT"/>
+        <result column="QuotationTotalPrice" property="quotationtotalprice" jdbcType="DECIMAL"/>
+        <result column="QuotationUnitPrice" property="quotationunitprice" jdbcType="DECIMAL"/>
+        <result column="quotationDate" property="quotationDate" jdbcType="DECIMAL"/>
+        <result column="PropertyArea" property="propertyarea" jdbcType="DECIMAL"/>
+        <result column="FloorStructure" property="floorstructure" jdbcType="VARCHAR"/>
+        <result column="PropertyType" property="propertytype" jdbcType="VARCHAR"/>
+        <result column="HouseType" property="housetype" jdbcType="VARCHAR"/>
+        <result column="PropertyRoom" property="propertyroom" jdbcType="TINYINT"/>
+        <result column="PropertyTing" property="propertyting" jdbcType="TINYINT"/>
+        <result column="PlaceFloor" property="placefloor" jdbcType="SMALLINT"/>
+        <result column="TotalFloor" property="totalfloor" jdbcType="SMALLINT"/>
+        <result column="Towards" property="towards" jdbcType="VARCHAR"/>
+        <result column="TowardsID" property="towardsid" jdbcType="TINYINT"/>
+        <result column="BasementArea" property="basementarea" jdbcType="REAL"/>
+        <result column="isAvailable" property="isavailable" jdbcType="BIT"/>
+        <result column="QResidenceName" property="qresidencename" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    QuotationID, QuotationDate, ResidenceID, RingID, DistrictID, BlockID, PropertyTypeID, 
+    FloorStructureID, QuotationTotalPrice, QuotationUnitPrice, PropertyArea, FloorStructure, 
+    PropertyType, HouseType, PropertyRoom, PropertyTing, PlaceFloor, TotalFloor, Towards, 
+    TowardsID, BasementArea, isAvailable, QResidenceName
+  </sql>
+    <insert id="saveOrupdate" parameterType="com.lezhi.crawler.dto.HouseQuotation">
+        <selectKey keyProperty="count" resultType="int" order="BEFORE">
+            select count(*) from lj_house_quotation WHERE id=#{id};
+        </selectKey>
+        <if test="count > 0">
+            UPDATE `lj_house_quotation` SET `ResidenceID`=#{residenceid},
+            `RingID`=#{ringid},
+            `DistrictID`=#{districtid}, `BlockID`=#{blockid}, `PropertyTypeID`=#{propertytypeid},
+            `FloorStructureID`=#{floorstructureid},
+            `QuotationTotalPrice`=#{quotationtotalprice}, `QuotationUnitPrice`=#{quotationunitprice},
+            `QuotationDate`=#{quotationDate},
+            `PropertyArea`=#{propertyarea}, `FloorStructure`=#{floorstructure}, `PropertyType`=#{propertytype},
+            `HouseType`=#{housetype}, `PropertyRoom`=#{propertyroom},
+            `PropertyTing`=#{propertyting}, `PlaceFloor`=#{placefloor}, `TotalFloor`=#{totalfloor},
+            `Towards`=#{towards}, `TowardsID`=#{towardsid},
+            `BasementArea`=#{basementarea}, `isAvailable`=#{isavailable}, `QResidenceName`=#{qresidencename} WHERE
+            (`id`=#{id});
+        </if>
+        <if test="count == 0">
+            INSERT INTO `lj_house_quotation` (`id`, `QuotationID`, `ResidenceID`, `RingID`, `DistrictID`,
+            `BlockID`, `PropertyTypeID`, `FloorStructureID`, `QuotationTotalPrice`, `QuotationUnitPrice`,
+            `QuotationDate`, `PropertyArea`, `FloorStructure`, `PropertyType`, `HouseType`, `PropertyRoom`,
+            `PropertyTing`, `PlaceFloor`, `TotalFloor`, `Towards`, `TowardsID`, `BasementArea`, `isAvailable`,
+            `QResidenceName`) VALUES (#{id},null,#{residenceid},#{ringid},#{districtid}, #{blockid},
+            #{propertytypeid},
+            #{floorstructureid},
+            #{quotationtotalprice},#{quotationunitprice},
+            #{quotationDate},
+            #{propertyarea}, #{floorstructure}, #{propertytype},
+            #{housetype}, #{propertyroom},
+            #{propertyting}, #{placefloor}, #{totalfloor},
+            #{towards}, #{towardsid},
+            #{basementarea}, #{isavailable}, #{qresidencename});
+
+        </if>
+    </insert>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lezhi.crawler.mapper.FangjiaResidenceInfoMapper">
+    <resultMap id="BaseResultMap" type="com.lezhi.crawler.dto.FangjiaResidenceInfo">
+        <id column="residence_id" property="residenceId" jdbcType="INTEGER"/>
+        <result column="residence_name" property="residenceName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="district" property="district" jdbcType="VARCHAR"/>
+        <result column="block" property="block" jdbcType="VARCHAR"/>
+        <result column="property_area" property="propertyArea" jdbcType="DECIMAL"/>
+        <result column="developers" property="developers" jdbcType="VARCHAR"/>
+        <result column="property_company" property="propertyCompany" jdbcType="VARCHAR"/>
+        <result column="building_num" property="buildingNum" jdbcType="INTEGER"/>
+        <result column="total_house" property="totalHouse" jdbcType="INTEGER"/>
+        <result column="residence_age" property="residenceAge" jdbcType="INTEGER"/>
+        <result column="volume_rate" property="volumeRate" jdbcType="DECIMAL"/>
+        <result column="greening_rate" property="greeningRate" jdbcType="DECIMAL"/>
+        <result column="longitude" property="longitude" jdbcType="VARCHAR"/>
+        <result column="latitude" property="latitude" jdbcType="VARCHAR"/>
+        <result column="residence_url" property="residenceUrl" jdbcType="VARCHAR"/>
+        <result column="main_house_type" property="mainHouseType" jdbcType="VARCHAR"/>
+        <result column="price_range" property="priceRange" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        residence_id, residence_name, address, district, block, property_area, developers,
+        property_company, building_num, total_house, residence_age, volume_rate, greening_rate,
+        longitude, latitude, residence_url, main_house_type, price_range
+    </sql>
+    <insert id="save" parameterType="java.util.List">
+        insert into fangjia_residence_info (
+        residence_id, residence_name, address, district, block, property_area, developers,
+        property_company, building_num, total_house, residence_age, volume_rate, greening_rate,
+        longitude, latitude, residence_url, main_house_type, price_range
+        )
+        values
+        <foreach collection="list" item="item" separator="," index="idex">
+            (#{item.residenceId}, #{item.residenceName}, #{item.address},
+            #{item.district}, #{item.block}, #{item.propertyArea},
+            #{item.developers}, #{item.propertyCompany}, #{item.buildingNum},
+            #{item.totalHouse}, #{item.residenceAge}, #{item.volumeRate},
+            #{item.greeningRate}, #{item.longitude}, #{item.latitude},
+            #{item.residenceUrl}, #{item.mainHouseType}, #{item.priceRange})
+        </foreach>
+    </insert>
+</mapper>

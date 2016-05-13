@@ -1,0 +1,25 @@
+﻿<html>
+  <body>
+	<h3 align="center">统计日期：<font color="Red">${date}</font></h3>
+	<h3 align="center">支付成功的总笔数：<font color="Red">${billOrderCount}</font></h3>
+        <h3 align="center">支付成功的总金额：<font color="Red">${billOrderSum}（分）</font></h3>
+       <!--以下是支付成功的订单明细-->
+       #if(${billOrderList.size()} > 0)
+       <h3 align="center">以下是支付成功的订单明细</h3>
+          <table border="1" color="red" align="center">
+              <tr>
+               <th>订单号</th> 
+               <th>用户ID</th> 
+               <th>支付协议号</th> 
+               <th>支付金额（分）</th> 
+               #foreach($!temp in $!billOrderList)
+              <tr>
+               <td>$!{temp.orderNo}</td>  
+               <td>$!{temp.userId}</td>
+               <td>$!{temp.payCode}</td>
+               <td>$!{temp.orderAmount}</td>
+              #end
+          </table>
+	#end
+  </body>
+</html>
